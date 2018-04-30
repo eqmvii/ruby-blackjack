@@ -5,12 +5,20 @@ def main
 
     the_deck = Deck.new
     the_deck.current_state
-    puts "Reveal top card of the deck?"
+    puts "Remove and reveal a card from the deck?"
     choice = gets.chomp
     puts "You chose #{choice.downcase}"
     if choice == "yes"
         puts "Revealing the top card!"
-        the_deck.show_top_card
+        the_deck.discard_top.speak
+        puts "again? (y/n)"
+        choice_two = gets.chomp
+        while choice_two.downcase == "y"
+            the_deck.discard_top.speak
+            puts "again? (y/n)"
+            choice_two = gets.chomp
+        end
+
     else
         puts "Fine."
     end

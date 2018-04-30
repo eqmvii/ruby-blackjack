@@ -16,6 +16,12 @@ class Deck
                 name =
                     if i == 1
                         "Ace"
+                    elsif i == 11
+                        "Jack"
+                    elsif i == 12
+                        "Queen"
+                    elsif i == 13
+                        "King"
                     else
                         i.to_s
                     end
@@ -35,6 +41,11 @@ class Deck
     def cards_remaining
         @cards_array.size
     end
+
+    def discard_top
+        @cards_array.pop
+    end
+
 
     def current_state
         puts "I have #{@cards} cards!"
