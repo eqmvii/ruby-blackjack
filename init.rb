@@ -8,12 +8,12 @@ def main
     puts "Remove and reveal a card from the deck?"
     choice = gets.chomp
     puts "You chose #{choice.downcase}"
-    if choice == "yes"
+    if choice.downcase == "yes" || choice.downcase == "y"
         puts "Revealing the top card!"
         the_deck.discard_top.speak
         puts "again? (y/n)"
         choice_two = gets.chomp
-        while choice_two.downcase == "y"
+        while choice_two.downcase == "y" || choice_two.downcase == "yes"
             the_deck.discard_top.speak
             puts "again? (y/n)"
             choice_two = gets.chomp

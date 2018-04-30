@@ -13,6 +13,12 @@ class Deck
 
         for i in 1..13
             for suit in ["Clubs", "Diamonds", "Hearts", "Spades"]
+                value =
+                    if i > 10
+                        10
+                    else
+                        i
+                    end
                 name =
                     if i == 1
                         "Ace"
@@ -25,16 +31,16 @@ class Deck
                     else
                         i.to_s
                     end
-                @cards_array << Card.new(suit, i, name)
+                @cards_array << Card.new(suit, value, name)
             end
         end
-        shuffle
+        shuffle_deck
 
         # first_card = Card.new("Hearts", 2, "Two of Hearts")
         # @cards_array << first_card
     end
 
-    def shuffle
+    def shuffle_deck
         @cards_array.shuffle!
     end
 
@@ -48,7 +54,7 @@ class Deck
 
 
     def current_state
-        puts "I have #{@cards} cards!"
+        puts "I have #{cards_remaining} cards!"
     end
 
     def show_top_card
