@@ -1,3 +1,5 @@
+# TODO: access_attr etc.
+
 require_relative 'card'
 
 class Deck
@@ -48,12 +50,11 @@ class Deck
         @cards_array.size
     end
 
-    def discard_top
+    def deal
         @cards_array.pop
     end
 
-
-    def current_state
+    def print_info
         puts "I have #{cards_remaining} cards!"
     end
 
