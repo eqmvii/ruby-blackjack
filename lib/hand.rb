@@ -10,20 +10,30 @@ class Hand
     end
 
     def print_info
-        puts "#{@player.name}'s hand (#{hand_value}): "
+        hand_string = "#{@player.name}'s hand (#{hand_value}): | "
         @cards_array.each do |card|
-            print card.print_info
-        puts
+            hand_string += card.long_name
+            hand_string += " | "
         end
+        puts hand_string
+    end
+
+    def look_at
+        hand_string = "#{@player.name}'s hand: | "
+        @cards_array.each do |card|
+            hand_string += card.look_at
+            hand_string += " | "
+        end
+        puts hand_string
     end
 
     def draw(card)
-        puts "I got called"
+        # puts "I got called"
         @cards_array << card
         if card.name == "Ace"
             @aces += 1
         end
-        puts "Aces: #{@aces}"
+        # puts "Aces: #{@aces}"
     end
 
     def has_an_ace?
@@ -41,10 +51,10 @@ class Hand
             sum += card.value
         end
 
-        if has_an_ace?
-            puts "Disclaimer: hand contains one or more aces"
-            puts "Disclaimer: hand contains one or more aces"
-            puts "Disclaimer: hand contains one or more aces"
+        temp_aces = @aces
+        while temp_aces > 0 && sum < 12
+            sum += 10
+            temp_aces -= 1
         end
 
         sum
@@ -53,6 +63,12 @@ class Hand
     def discard
         @cards_array = []
         @aces = 0
+    end
+
+    def face_up_all
+        @cards_array.each do |card|
+            card.make_face_up
+        end
     end
 
 

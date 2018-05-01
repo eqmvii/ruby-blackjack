@@ -10,6 +10,4 @@ def main
 
 end
 
-
-
 main

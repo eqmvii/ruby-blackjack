@@ -1,6 +1,6 @@
 class Card
 
-    attr_reader :value, :name
+    attr_reader :value, :name, :long_name
 
     def initialize (suit, value, name, long_name)
         @suit = suit
@@ -15,8 +15,10 @@ class Card
         puts @long_name
     end
 
+    # Flips the card and returns a copy of itself
     def flip
         @facing_up = !@facing_up
+        self
     end
 
     def look_at
@@ -25,6 +27,10 @@ class Card
         else
             "[Face Down Card]"
         end
+    end
+
+    def make_face_up
+        @facing_up = true
     end
 
 end
