@@ -6,7 +6,7 @@ def main
 
     game.play
 
-    game.top_card_loop
+    # game.top_card_loop
 
 end
 

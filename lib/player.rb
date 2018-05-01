@@ -1,8 +1,15 @@
 class Player
 
-    def initialize(starting_balance = 10000)
-        puts "What is your name?"
-        @name = gets.chomp
+    attr_reader :name
+
+    def initialize(type, starting_balance = 10000)
+        @name =
+            if type == :human
+                puts "What is your name?"
+                gets.chomp
+            else
+                "[Computer]"
+        end
         @starting_balance = starting_balance
     end
 

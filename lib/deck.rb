@@ -33,7 +33,8 @@ class Deck
                     else
                         i.to_s
                     end
-                @cards_array << Card.new(suit, value, name)
+                long_name = "#{name} of #{suit}"
+                @cards_array << Card.new(suit, value, name, long_name)
             end
         end
         shuffle_deck
