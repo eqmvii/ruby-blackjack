@@ -1,4 +1,5 @@
 # TODO: Clean up code, make multiple turns work, add gambling, add strategy
+# TODO: Bug - computer just hits all the time lol
 
 require_relative 'deck'
 require_relative 'hand'
@@ -14,6 +15,9 @@ class Blackjack
         @player = Player.new(:human)
         @computer = Player.new(:computer)
         @player.print_info
+        puts " "
+        puts "% % % % % % % % % % % % % % % % % % % %"
+        puts " "
         # @the_deck.print_info
 
         deal_hand
@@ -46,19 +50,20 @@ class Blackjack
         while choice == 'h'
             puts " "
             puts "% % % % % % % % % % % % % % % % % % % %"
+            puts " "
             @player_hand.draw(@the_deck.deal)
             @player_hand.print_info
             @computer_hand.look_at
             check_for_win(@player_hand)
             puts "(H)it or (S)tay?"
             choice = gets.chomp
-            puts "Choice is: #{choice} with length #{choice.length}"
+            # puts "Choice is: #{choice} with length #{choice.length}"
         end
         puts " "
         puts "% % % % % % % % % % % % % % % % % % % %"
-        puts "Player stays. Computers turn!"
         puts " "
-        sleep(2)
+        puts "Player stays. Computers turn: "
+        sleep(1)
         @player_hand.print_info
 
     end
@@ -67,24 +72,40 @@ class Blackjack
     def computer_loop
         @computer_hand.face_up_all
         @computer_hand.print_info
-        while @computer_hand.hand_value < 21
+        while @computer_hand.hand_value < 17
             puts " "
             puts "% % % % % % % % % % % % % % % % % % % %"
+            puts " "
             puts "Computer hits!"
             @computer_hand.draw(@the_deck.deal)
             @computer_hand.print_info
             check_for_win(@computer_hand)
-            sleep(2)
+            sleep(1)
         end
+
+        declare_winner
     end
 
     def check_for_win(hand)
         if(hand.hand_value == 21)
-            puts "VICTORY HAS BEEN ACHIEVED FOR #{hand.player.name}"
-            abort "#{hand.player.name} WON!"
+            puts "#{hand.player.name} wins with #{hand.hand_value}!"
+            abort "Goodbye - #{hand.player.name} won!"
         elsif(hand.hand_value > 21)
-            puts "CRUSHING DEFEAT FOR #{hand.player.name}"
-            abort "#{hand.player.name} LOST!"
+            puts "#{hand.player.name} went bust with #{hand.hand_value}!"
+            abort "Goodbye - #{hand.player.name} lost!"
+        end
+    end
+
+    def declare_winner
+        if(@player_hand.hand_value > @computer_hand.hand_value)
+            puts "#{@player_hand.player.name} wins with #{@player_hand.hand_value} vs. #{@computer_hand.players.name}'s #{@computer_hand.hand_value}!"
+            abort "Goodbye - #{@player_hand.player.name} won!"
+        elsif(@computer_hand.hand_value > @player_hand.hand_value)
+            puts "#{@computer_hand.player.name} wins with #{@computer_hand.hand_value} vs. #{@player_hand.player.name}'s #{@player_hand.hand_value}!"
+            abort "Goodbye - #{@computer_hand.player.name} won!"
+        else
+            puts "It's a tie at #{@player_hand.hand_value}"
+            abort "Goodbye - it was a tie!"
         end
     end
 
