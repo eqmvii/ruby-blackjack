@@ -98,7 +98,7 @@ class Blackjack
 
     def declare_winner
         if(@player_hand.hand_value > @computer_hand.hand_value)
-            puts "#{@player_hand.player.name} wins with #{@player_hand.hand_value} vs. #{@computer_hand.players.name}'s #{@computer_hand.hand_value}!"
+            puts "#{@player_hand.player.name} wins with #{@player_hand.hand_value} vs. #{@computer_hand.player.name}'s #{@computer_hand.hand_value}!"
             abort "Goodbye - #{@player_hand.player.name} won!"
         elsif(@computer_hand.hand_value > @player_hand.hand_value)
             puts "#{@computer_hand.player.name} wins with #{@computer_hand.hand_value} vs. #{@player_hand.player.name}'s #{@player_hand.hand_value}!"
