@@ -10,16 +10,17 @@ class Hand
     end
 
     def print_info
-        hand_string = "#{@player.name}'s hand (#{hand_value}): | "
+        hand_string = "(#{hand_value}) #{@player.name}: "
         @cards_array.each do |card|
             hand_string += card.long_name
             hand_string += " | "
         end
+        # hand_string += "(#{hand_value})"
         puts hand_string
     end
 
     def look_at
-        hand_string = "#{@player.name}'s hand: | "
+        hand_string = "#{@player.name}: "
         @cards_array.each do |card|
             hand_string += card.look_at
             hand_string += " | "
