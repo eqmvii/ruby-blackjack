@@ -16,6 +16,8 @@ class Hand
             hand_string += " | "
         end
         # hand_string += "(#{hand_value})"
+        hand_string += "$"
+        hand_string += @player.current_balance.to_s
         puts hand_string
     end
 

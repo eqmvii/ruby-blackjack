@@ -1,6 +1,6 @@
 class Player
 
-    attr_reader :name
+    attr_reader :name, :current_balance
 
     def initialize(type, starting_balance = 10000)
         @name =
@@ -11,6 +11,7 @@ class Player
                 "[Computer]"
         end
         @starting_balance = starting_balance
+        @current_balance = starting_balance
     end
 
     def print_info
